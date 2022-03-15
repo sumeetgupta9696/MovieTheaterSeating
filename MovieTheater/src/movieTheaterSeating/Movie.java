@@ -25,7 +25,7 @@ public class Movie {
                 String reservation = hp.reserveSeats(Integer.parseInt(input[1]));
                 if (reservation == null) {
                 	outputFile.append(input[0] + " " + "FULL" + "\n");
-                    System.out.println("Sorry no seats left" + input[0]);
+                    System.out.println("Sorry no seats left " + input[0]);
                 } else {
                 	outputFile.append(input[0] + " " + reservation + "\n");
                 }

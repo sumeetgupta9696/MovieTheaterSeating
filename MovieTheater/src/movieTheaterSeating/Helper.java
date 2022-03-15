@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 class Helper {
-
     private int numRows;
     private Status[][] availableSeats;
     private int reserved;
@@ -36,7 +35,7 @@ class Helper {
         
 //      Try to reserve seats in the same row for single reservation
         List<int[]> seatLocs = new ArrayList<>(num);
-        StringBuilder ansString = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         int row = -1, distToMid = numRows;
         for (int i = 0; i < seatsLeftInRow.length; i++) {
             int dist = Math.abs(seatsLeftInRow.length / 2 - i);
@@ -46,10 +45,11 @@ class Helper {
             }
         }
 
-        // cannot fit the group in one row, so split group and find rows with most capacity to put them in
-        // break ties for rows with most capacity by finding the one closest to the middle
-        // will be able to rollback if we realize that we cannot fit the group
+
+//		Split reservation in different rows if exceeds single row capacity and fit remaining in row with most capacity closest to middle
         if (row == -1) {
+        	
+//        	Initializing rolling back of reserved and buffer if ideal split reservation is not found
             List<int[]> rollbackReserved = new LinkedList<>();
             List<int[]> rollbackBuffered = new LinkedList<>();
             while (num > 0) {
@@ -109,11 +109,11 @@ class Helper {
             }
         }
         for (int[] loc: seatLocs) {
-            ansString.append((char) (loc[0] + 65) + Integer.toString(loc[1] + 1) + ",");
+        	result.append((char) (loc[0] + 65) + Integer.toString(loc[1] + 1) + ",");
             bufferSpace(loc[0], loc[1]);
         }
-        ansString.deleteCharAt(ansString.length()-1);
-        return ansString.toString();
+        result.deleteCharAt(result.length()-1);
+        return result.toString();
     }
 
 //	Create a buffer space of 3 seats and 1 row for public safety
