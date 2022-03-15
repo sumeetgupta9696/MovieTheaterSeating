@@ -40,7 +40,7 @@ The output file should contain first column as reservation identifier and second
 
 3. Run the program with command line arguements mandatorily including input filepath and output filepath. Below is the sample command:
 
-> java movieTheaterSeating.Movie <Input filepath> <Output filepath>
+> java movieTheaterSeating.Movie {Input filepath} {Output filepath}
 
 4. Check the Output filepath for generated output.
 
